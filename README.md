@@ -1,7 +1,7 @@
 # Pico y Placa Predictor
 Pico y Placa Predictor is a Free and Open Source Software to check if a Driver has a Restriction to drive by their License Plate Number on the Date-Time entered by the User, that way, be able to get prepared and take precautions. The Software works with the Quito - Ecuador Restriction Schedule.
 
-# Contribution
+# Lincense
 This Software is under the GPLv3 (General Public License version 3), you can use it freely and can contribute if you would like to do it.
 
 # Contribution
