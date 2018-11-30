@@ -8,6 +8,6 @@ This Software is under the GPLv3 (General Public License version 3), you can use
 If you want to contribute and make improvements in this project you can do so, as long as the contributions are related to the project subject and improve its functionality or its visual interface (GUI).
 
 # Thanks for using...
-Thank you for using this Software, comments and feedback is always welcome. :)
+Thank you for using this Software, comments and feedback are always welcome. :)
 
 Have a great life... Happy Coding!, and Best Regards... Clark.
