@@ -4,11 +4,11 @@ Pico y Placa Predictor is a Free and Open Source Software to check if a Driver h
 Easy to use and highly informative you can be prevented and be alert while Pico y Placa Predictor makes all the calculations for you.
 Improvements and new features could be available on future versions, if you would like to see a feature, don't forget to leave a suggestion on the Issues Tab of the GitHub Repository: On Issues Tab, click on "New Issue", and choose "Get started" on the "Feature Request" panel, same if you want to report an Issue, click on the button from the corresponding panel.
 
-# Lincense
+### Lincense
 This Software is under the GPLv3 (General Public License version 3), you can use it freely and can contribute if you would like to do it.
 For full information about the License and the attributions you are granted at the moment of use, distribution, modify the software, etc... read the file "LICENSE", present in the root directory of the project.
 
-# Contribution
+### Contribution
 If you want to contribute and make improvements in this project you can do so, as long as the contributions are related to the project subject and improve its functionality or its visual interface (GUI).
 
 # Thanks for using...
