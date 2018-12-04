@@ -1,4 +1,4 @@
-# Pico y Placa Predictor
+# Pico y Placa Predictor Software
 Pico y Placa Predictor is a Free and Open Source Software to check if a Driver has a Restriction to drive by their License Plate Number on the Date-Time entered by the User, that way, be able to get prepared and take precautions. The Software works with the Quito - Ecuador Restriction Schedule, just open the App, click on Next to see the Checker Screen, enter the data required like Driver's License Plate Number, Date and  Time you want to check, then click on Check! Button, and see if you have a restriction or not on the Date-Time you entered, also if you are under a Restriction on that exact time as well as if you are near to a Restriction Schedule on that day, the App tells you the time that remains to your Restriction ends or the time to the near Restriction Begins, so that way you can have that time on mind and take precautions. 
 
 Easy to use and highly informative you can be prevented and be alert while Pico y Placa Predictor makes all the calculations for you.
