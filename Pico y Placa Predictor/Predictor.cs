@@ -16,8 +16,15 @@ namespace Pico_y_Placa_Predictor
 
         public Predictor()
         {
+            splash();
             InitializeComponent();
             welcome();
+        }
+
+        private void splash()
+        {
+            FormSplash SplashScreen = new FormSplash();
+            SplashScreen.ShowDialog();
         }
 
         #region Navigation Buttons Methods

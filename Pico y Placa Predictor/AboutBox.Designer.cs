@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBoxPicoYPlaca));
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
@@ -39,9 +40,11 @@
             this.labelMoreInfo = new System.Windows.Forms.Label();
             this.linkLabelAmtWebPage = new System.Windows.Forms.LinkLabel();
             this.errorProviderAboutLinkPage = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBoxAboutIcon = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAboutLinkPage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAboutIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -152,11 +155,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::Pico_y_Placa_Predictor.Properties.Resources.Pico_y_Placa_Predictor_Splash_Short_About;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(-4, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(476, 195);
+            this.pictureBox1.Size = new System.Drawing.Size(470, 195);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -189,12 +192,23 @@
             // 
             this.errorProviderAboutLinkPage.ContainerControl = this;
             // 
+            // pictureBoxAboutIcon
+            // 
+            this.pictureBoxAboutIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxAboutIcon.BackgroundImage")));
+            this.pictureBoxAboutIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxAboutIcon.Location = new System.Drawing.Point(356, 310);
+            this.pictureBoxAboutIcon.Name = "pictureBoxAboutIcon";
+            this.pictureBoxAboutIcon.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxAboutIcon.TabIndex = 5;
+            this.pictureBoxAboutIcon.TabStop = false;
+            // 
             // AboutBoxPicoYPlaca
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 618);
+            this.Controls.Add(this.pictureBoxAboutIcon);
             this.Controls.Add(this.linkLabelAmtWebPage);
             this.Controls.Add(this.labelMoreInfo);
             this.Controls.Add(this.pictureBox1);
@@ -215,6 +229,7 @@
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAboutLinkPage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAboutIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,5 +248,6 @@
         private System.Windows.Forms.Label labelMoreInfo;
         private System.Windows.Forms.LinkLabel linkLabelAmtWebPage;
         private System.Windows.Forms.ErrorProvider errorProviderAboutLinkPage;
+        private System.Windows.Forms.PictureBox pictureBoxAboutIcon;
     }
 }

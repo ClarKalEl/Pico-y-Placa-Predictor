@@ -61,11 +61,21 @@ namespace Pico_y_Placa_Predictor.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pico_y_Placa_Predictor_Software_AboutIcon {
+            get {
+                object obj = ResourceManager.GetObject("Pico_y_Placa_Predictor_Software_AboutIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        internal static System.Drawing.Icon pico_y_placa_predictor_icon {
+        internal static System.Drawing.Icon Pico_y_Placa_Predictor_Software_favicon {
             get {
-                object obj = ResourceManager.GetObject("pico_y_placa_predictor_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Pico_y_Placa_Predictor_Software_favicon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -73,9 +83,9 @@ namespace Pico_y_Placa_Predictor.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pico_y_Placa_Predictor_Splash_Screen {
+        internal static System.Drawing.Bitmap Pico_y_Placa_Predictor_Splash_Screen_WinForms {
             get {
-                object obj = ResourceManager.GetObject("Pico_y_Placa_Predictor_Splash_Screen", resourceCulture);
+                object obj = ResourceManager.GetObject("Pico_y_Placa_Predictor_Splash_Screen_WinForms", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

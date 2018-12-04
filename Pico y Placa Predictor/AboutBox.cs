@@ -11,14 +11,13 @@ namespace Pico_y_Placa_Predictor
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version: {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
         }
 
         #region Descriptores de acceso de atributos de ensamblado
-
         public string AssemblyTitle
         {
             get
@@ -103,7 +102,7 @@ namespace Pico_y_Placa_Predictor
             {
                 // Change the color of the link text by setting LinkVisited to true.  
                 linkLabelAmtWebPage.LinkVisited = true;
-                //Call the Process.Start method to open the default browser with an URL:  
+                //Call the Process.Start method to open the default browser with the AMT(Agencia Metropolitana de Tránsito) URL:  
                 System.Diagnostics.Process.Start("http://www.amt.gob.ec/index.php/pico-placa-homepage.html");
             }
             catch (Exception ex)

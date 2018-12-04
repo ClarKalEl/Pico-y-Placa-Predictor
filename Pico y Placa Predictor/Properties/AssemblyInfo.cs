@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Pico y Placa Predictor")]
+[assembly: AssemblyTitle("Pico y Placa Predictor Software")]
 [assembly: AssemblyDescription("This is a Pico y Placa Software that only works with the Quito - Ecuador Restriction Schedule. Pico y Placa Predictor is a Free and Open Source Software, you are authorized to use it and improve it, so feel absolutely free to do it whenever you want. Thank you for using it, and the Best of Luck!. Happy Coding! :)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ClarkSoft Studios")]
-[assembly: AssemblyProduct("Pico y Placa Predictor")]
+[assembly: AssemblyCompany("Ck Studios")]
+[assembly: AssemblyProduct("Pico y Placa Predictor Software")]
 [assembly: AssemblyCopyright("Open Source Software • 2018")]
 [assembly: AssemblyTrademark("ClarkSoft")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Puede especificar todos los valores o utilizar los números de compilación y de revisión predeterminados
 // mediante el carácter '*', como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0")]
-[assembly: AssemblyFileVersion("1.0")]
+[assembly: AssemblyVersion("1.1")]
+[assembly: AssemblyFileVersion("1.1")]
