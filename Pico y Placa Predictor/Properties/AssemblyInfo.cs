@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Pico y Placa Predictor Software")]
 [assembly: AssemblyDescription("This is a Pico y Placa Software that only works with the Quito - Ecuador Restriction Schedule. Pico y Placa Predictor is a Free and Open Source Software, you are authorized to use it and improve it, so feel absolutely free to do it whenever you want. Thank you for using it, and the Best of Luck!. Happy Coding! :)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ck Studios")]
+[assembly: AssemblyCompany("Ck Developments")]
 [assembly: AssemblyProduct("Pico y Placa Predictor Software")]
 [assembly: AssemblyCopyright("Open Source Software • 2018")]
-[assembly: AssemblyTrademark("ClarkSoft")]
+[assembly: AssemblyTrademark("Ck Software")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 

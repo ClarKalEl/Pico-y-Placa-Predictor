@@ -21,11 +21,13 @@ namespace Pico_y_Placa_Predictor
             welcome();
         }
 
+        #region Splash
         private void splash()
         {
             FormSplash SplashScreen = new FormSplash();
             SplashScreen.ShowDialog();
         }
+        #endregion
 
         #region Navigation Buttons Methods
         private void buttonNext_Click(object sender, EventArgs e)
@@ -144,8 +146,9 @@ namespace Pico_y_Placa_Predictor
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm.ShowDialog();
-        }
 
+        }
         #endregion
+
     }
 }

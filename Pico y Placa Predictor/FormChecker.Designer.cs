@@ -42,8 +42,8 @@
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labelCommentaries = new System.Windows.Forms.Label();
             this.labelVerdict = new System.Windows.Forms.Label();
+            this.labelCommentaries = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -139,7 +139,6 @@
             // 
             this.mTBDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTBDate.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.mTBDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTBDate.HidePromptOnLeave = true;
             this.mTBDate.Location = new System.Drawing.Point(199, 65);
@@ -150,7 +149,6 @@
             this.mTBDate.Size = new System.Drawing.Size(185, 29);
             this.mTBDate.TabIndex = 4;
             this.mTBDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mTBDate.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.toolTipInfo.SetToolTip(this.mTBDate, "Use the Format dd/MM/YYYY for the Date Please");
             this.mTBDate.ValidatingType = typeof(System.DateTime);
             this.mTBDate.TextChanged += new System.EventHandler(this.mTBDate_TextChanged);
@@ -237,20 +235,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Result";
             // 
-            // labelCommentaries
-            // 
-            this.labelCommentaries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCommentaries.Font = new System.Drawing.Font("Segoe UI Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCommentaries.ForeColor = System.Drawing.Color.Black;
-            this.labelCommentaries.Location = new System.Drawing.Point(6, 45);
-            this.labelCommentaries.Name = "labelCommentaries";
-            this.labelCommentaries.Size = new System.Drawing.Size(679, 69);
-            this.labelCommentaries.TabIndex = 7;
-            this.labelCommentaries.Text = "•••";
-            this.labelCommentaries.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelVerdict
             // 
             this.labelVerdict.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -265,6 +249,20 @@
             this.labelVerdict.Text = "You are Authorized to Drive, Good Travel! : )";
             this.labelVerdict.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelVerdict.Visible = false;
+            // 
+            // labelCommentaries
+            // 
+            this.labelCommentaries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCommentaries.Font = new System.Drawing.Font("Segoe UI Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCommentaries.ForeColor = System.Drawing.Color.Black;
+            this.labelCommentaries.Location = new System.Drawing.Point(6, 45);
+            this.labelCommentaries.Name = "labelCommentaries";
+            this.labelCommentaries.Size = new System.Drawing.Size(679, 69);
+            this.labelCommentaries.TabIndex = 7;
+            this.labelCommentaries.Text = "•••";
+            this.labelCommentaries.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormChecker
             // 

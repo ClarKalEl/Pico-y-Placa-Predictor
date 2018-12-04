@@ -194,7 +194,7 @@
             // 
             // pictureBoxAboutIcon
             // 
-            this.pictureBoxAboutIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxAboutIcon.BackgroundImage")));
+            this.pictureBoxAboutIcon.BackgroundImage = global::Pico_y_Placa_Predictor.Properties.Resources.Pico_y_Placa_Predictor_Software_AboutIcon;
             this.pictureBoxAboutIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxAboutIcon.Location = new System.Drawing.Point(356, 310);
             this.pictureBoxAboutIcon.Name = "pictureBoxAboutIcon";
