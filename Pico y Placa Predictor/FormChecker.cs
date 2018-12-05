@@ -136,7 +136,6 @@ namespace Pico_y_Placa_Predictor
             String parsedDateDOW; //Day of the Week involved in the parsedEnteredDateTime.
             String[] rightWords = new String[2]; // String Array to save the right words to use Hour/Hours, Minute/Minutes
             TimeSpan timeUntilRestrictionRemaining; //TimeSpan variable to save The Time To next Restriction Beginning Schedule or the Remaining Restriction Time if Driver is Restricted.
-            MessageBox.Show("Date Lenght: " + givenDate.Length + "\nDate Text: " + givenDate); 
             if (givenDate.Length == 10)
             {   //givenDate Breakdown / Apportionment. This Apportionment is for a better and so much ease of issues detecting with the givenDate.
                 int day = Convert.ToInt32(givenDate.Substring(0, 2)); //Converting to Int the String portion corresponding to every Date aspect for easy handling.
