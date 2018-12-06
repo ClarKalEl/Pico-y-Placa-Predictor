@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Pico_y_Placa_Predictor
@@ -6,8 +7,8 @@ namespace Pico_y_Placa_Predictor
     public partial class Predictor : Form
     {
         #region Global Class Fields and Properties Declaration/Initialization and Contained Forms Instanciation.
-        private String actualSection = "Start";
-        public String ActualSection { get { return actualSection; } set { actualSection = value; } }
+        private String currentSection = "Start";
+        public String CurrentSection { get { return currentSection; } set { currentSection = value; } }
         FormWelcome WelcomeScreen = new FormWelcome();
         FormChecker CheckerScreen = new FormChecker();
         FormFarewell FarewellScreen = new FormFarewell();
@@ -19,6 +20,7 @@ namespace Pico_y_Placa_Predictor
             splash();
             InitializeComponent();
             welcome();
+            buttonActivation("buttonBack",false);
         }
 
         #region Splash
@@ -40,11 +42,11 @@ namespace Pico_y_Placa_Predictor
             goBack();
         }
 
-        //Method that manages the Next Button behavior
+        // Method that manages the Next Button behavior
         private void goNext()
         {
-            buttonBack.Enabled = true;
-            switch (ActualSection) //Checks the Current Showing Form and decide where to go based on the ActualSection.
+            buttonActivation("buttonBack", true);
+            switch (CurrentSection) // Checking the Current Showing Form and decide where to go based on the CurrentSection class property.
             {
                 case "Welcome":
                     checker();
@@ -59,19 +61,58 @@ namespace Pico_y_Placa_Predictor
             }
         }
 
-        //Method that manages the Back Button behavior
+        // Method that manages the Back Button behavior
         private void goBack()
         {
-            buttonNext.Enabled = true;
-            switch (ActualSection) //Checks the Current Showing Form and decide where to go.
+            switch (CurrentSection) //Checks the Current Showing Form and decide where to go.
             {
                 case "Checker":
                     welcome();
-                    buttonBack.Enabled = false;
+                    buttonActivation("buttonBack", false);
                     break;
                 case "Farewell":
                     buttonNext.Text = "Next";
                     checker();
+                    break;
+            }
+        }
+        
+        // Method to Enable or Disable the Buttons, it changes not only the Enabled property but the color as well for a more intuitive look.
+        private void buttonActivation(string buttonName, Boolean requiredState) 
+        {   // Active / Enabled Colors:
+            Color buttonActiveBackColor = Color.FromArgb(69, 39, 160); //Colors for Showing the Last Verdict.
+            Color buttonActiveBorderColor = Color.FromArgb(121, 83, 210);
+            Color buttonActiveMouseDownBackColor = Color.FromArgb(0, 0, 112);
+            Color buttonActiveMouseOverBackColor = Color.FromArgb(121, 83, 210);
+            Color buttonActiveTextForeColor = Color.White;
+            // Inactive / Disabled Colors:
+            Color buttonInactiveBackColor = Color.FromKnownColor(KnownColor.InactiveCaption); //Colors for Showing the Last Verdict.
+            Color buttonInactiveBorderColor = Color.FromKnownColor(KnownColor.InactiveBorder);
+            Color buttonInactiveMouseDownBackColor = Color.FromKnownColor(KnownColor.InactiveCaption);
+            Color buttonInactiveMouseOverBackColor = Color.FromKnownColor(KnownColor.InactiveCaption);
+            Color buttonInactiveTextForeColor = Color.FromKnownColor(KnownColor.InactiveCaptionText);
+            // Comparing buttonName and Assigning Colors by requiredState.
+            switch (buttonName)
+            {
+                case "buttonBack":
+                    if (requiredState)
+                    {
+                        buttonBack.Enabled = true;
+                        buttonBack.BackColor = buttonActiveBackColor;
+                        buttonBack.FlatAppearance.BorderColor = buttonActiveBorderColor;
+                        buttonBack.FlatAppearance.MouseDownBackColor = buttonActiveMouseDownBackColor;
+                        buttonBack.FlatAppearance.MouseOverBackColor = buttonActiveMouseOverBackColor;
+                        buttonBack.ForeColor = buttonActiveTextForeColor;
+                    }
+                    else
+                    {
+                        buttonBack.Enabled = false;
+                        buttonBack.BackColor = buttonInactiveBackColor;
+                        buttonBack.FlatAppearance.BorderColor = buttonInactiveBorderColor;
+                        buttonBack.FlatAppearance.MouseDownBackColor = buttonInactiveMouseDownBackColor;
+                        buttonBack.FlatAppearance.MouseOverBackColor = buttonInactiveMouseOverBackColor;
+                        buttonBack.ForeColor = buttonInactiveTextForeColor;
+                    }
                     break;
             }
         }
@@ -91,7 +132,7 @@ namespace Pico_y_Placa_Predictor
             formSetter("Farewell");
         }
 
-        //Method that removes from the main container the current showing form.
+        // Method that removes from the main panel container the current showing form.
         private void formRemover(String sectionName)
         {
             if (panelContent.Controls.Count > 0)
@@ -101,40 +142,40 @@ namespace Pico_y_Placa_Predictor
 
         }
 
-        //Method that shows up the form that should appear, get it into the main container and shows it up.
+        // Method that shows up the form that should appear, get it into the main container and shows it up.
         public void formSetter(String sectionName)
         {
-            if(panelContent.Controls.Count>=1) formRemover(ActualSection);
+            if(panelContent.Controls.Count>=1) formRemover(CurrentSection);
             switch (sectionName)
             {
                 case "Welcome":
-                    if (ActualSection != "Welcome")
+                    if (CurrentSection != "Welcome")
                     {
                         WelcomeScreen.TopLevel = false;
                         WelcomeScreen.AutoScroll = true;
                         panelContent.Controls.Add(WelcomeScreen);
-                        ActualSection = "Welcome";
+                        CurrentSection = "Welcome";
                         WelcomeScreen.Show();
                         WelcomeScreen.Size = panelContent.Size;
                     }
                     break;
                 case "Checker":
-                    if (ActualSection != "Checker")
+                    if (CurrentSection != "Checker")
                     {
                         CheckerScreen.TopLevel = false;
                         CheckerScreen.AutoScroll = true;
                         panelContent.Controls.Add(CheckerScreen);
-                        ActualSection = "Checker";
+                        CurrentSection = "Checker";
                         CheckerScreen.Show();
                     }
                     break;
                 case "Farewell":
-                    if (ActualSection != "Farewell")
+                    if (CurrentSection != "Farewell")
                     {   
                         FarewellScreen.TopLevel = false;
                         FarewellScreen.AutoScroll = true;
                         panelContent.Controls.Add(FarewellScreen);
-                        ActualSection = "Farewell";
+                        CurrentSection = "Farewell";
                         FarewellScreen.Show();
                     }
                     break;
@@ -146,7 +187,6 @@ namespace Pico_y_Placa_Predictor
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm.ShowDialog();
-
         }
         #endregion
 
