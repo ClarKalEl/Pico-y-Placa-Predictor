@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Ck Developments")]
 [assembly: AssemblyProduct("Pico y Placa Predictor Software")]
 [assembly: AssemblyCopyright("Open Source Software • 2018")]
-[assembly: AssemblyTrademark("Ck Software")]
+[assembly: AssemblyTrademark("Ck Developments")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 

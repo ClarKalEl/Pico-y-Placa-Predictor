@@ -14,7 +14,7 @@ namespace Pico_y_Placa_Predictor
         public Boolean OldMan { get { return oldMan; } set { oldMan = value; } }
 
         String[] daysByDigits = { "Friday", "Monday", "Monday", "Tuesday", "Tuesday", "Wednesday", "Wednesday", "Thursday", "Thursday", "Friday" };
-        public String[] DaysByDigits { get { return daysByDigits; } } //Restricted Days Array, every array index correspond to the last License Plate Number, so I corelate the License Plate Last Digit with the order I save the days inside the Array, this way we just have to enter the Driver License Plate Last Digit (keyNumber) as index, and we're gonna have the Restricted Day for the Driver.
+        public String[] DaysByDigits { get { return daysByDigits; } } //Restricted Days Array, every array index correspond to the last License Plate Number, so I correlate the License Plate Last Digit with the order I save the days inside the Array, this way we just have to enter the Driver License Plate Last Digit (keyNumber) as index, and we're gonna have the Restricted Day for the Driver.
 
         String morningScheduleBeginTime = "07:00", morningScheduleEndTime = "09:30"; //Fields and Properties of the Different Restricted Schedules for Quito - Ecuador City.
         String afternoonScheduleBeginTime = "16:00", afternoonScheduleEndTime = "19:30";
@@ -22,10 +22,10 @@ namespace Pico_y_Placa_Predictor
         public String MorningScheduleEndTime { get { return morningScheduleEndTime; } }
         public String AfternoonScheduleBeginTime { get { return afternoonScheduleBeginTime; } }
         public String AfternoonScheduleEndTime { get { return afternoonScheduleEndTime; } }
-        String closeToRestrictionTimeRemaining = ""; // Fields and Properties for helping to know if the Driver with the DateTime entered is close to a restriction schedule.
-        public String CloseToRestrictionTimeRemaining { get { return closeToRestrictionTimeRemaining; } set { closeToRestrictionTimeRemaining = value; } }
-        Boolean[] closeToRestriction = new Boolean[2]; //The index 0 is for indicating if there is(T) or not(F) a Restriction Schedule close and the index 1 is for knowing if that Restriction is on morning(T), otherwise(F) the next Restriction is on afternoon.
-        public Boolean[] CloseToRestriction { get { return closeToRestriction; } set { closeToRestriction = value; } }
+        String nearRestrictionTimeRemaining = ""; // Fields and Properties for helping to know if the Driver with the DateTime entered is near a restriction schedule.
+        public String NearRestrictionTimeRemaining { get { return nearRestrictionTimeRemaining; } set { nearRestrictionTimeRemaining = value; } }
+        Boolean[] nearRestriction = new Boolean[2]; //The index 0 is for indicating if there is(T) or not(F) a Restriction Schedule near. The index 1 is for knowing if that Restriction is on morning(T), otherwise(F) the next Restriction on that day is on afternoon.
+        public Boolean[] NearRestriction { get { return nearRestriction; } set { nearRestriction = value; } }
 
         Color holoGreenDark = Color.FromArgb(255, 102, 153, 0); //Colors for Showing the Last Verdict.
         Color redError = Color.FromArgb(255, 155, 0, 0);
@@ -40,8 +40,8 @@ namespace Pico_y_Placa_Predictor
         {
             IsLicensePlateOk = true; //Resetting the Properties
             OldMan = false;
-            CloseToRestriction[0] = false; CloseToRestriction[1] = true;
-            CloseToRestrictionTimeRemaining = "";
+            NearRestriction[0] = false; NearRestriction[1] = true;
+            NearRestrictionTimeRemaining = "";
             try
             {
                 errorProvider.Clear();
@@ -97,12 +97,12 @@ namespace Pico_y_Placa_Predictor
         #endregion
 
         #region License Plate Verifier Method
-        //Method that Verifies the Licence Plate has a right structure, otherwise gives an error to the User that they must fix. It return an int error code where 0->No Error, 1->The three first character are not only UPPERCASE letters, which it must be, 2->The License Plate is incomplete.
+        //Method that Verifies the Licence Plate Number has a right structure, otherwise gives an error to the User that they must fix. It returns an int error code where 0->No Error, 1->The three first character are not only UPPERCASE letters, which it must be, 2->The License Plate Number is incomplete.
         private int licensePlateVerifier(string licensePlateNumber)
         {
             int errorResult = 0;
             if (licensePlateNumber.Length == 10)
-            {   //It starts assigning the first three characters to a char array, then it runs to compare and verify it is between the A char and the Z char in the Asscii table, if not, sets the property IsLicensePlateOk to false and breaks the loop, it tests the boolean property and if it is false it sends the error code.
+            {   //It starts assigning the first three characters to a char array, then it runs to compare and verify it is between the A char and the Z char in the Asscii table, if not, sets the property IsLicensePlateOk to false and breaks the loop, it tests the boolean property and if it's false, it sends the error code.
                 char[] c = mTBLicensePlate.Text.Substring(0, 3).ToCharArray();
                 for (int i = 0; i <= 2; i++)
                 {
@@ -154,12 +154,12 @@ namespace Pico_y_Placa_Predictor
                             {
                                 if (minutes >= 0 && minutes <= 59)
                                 {
-                                    parsedEnteredDateTime = dateTimeParser(givenDate + " " + givenTime); //Converting Strings to DateTime values, calling to the Converter/Parser. parsedEnteredDateTime is the Date combined with the Time entered by the User, to obtain a DateTime Object.
-                                    driverRestictedDay = DaysByDigits[keyNumber]; //Knowing what is the Driver's Restriction Day.
+                                    parsedEnteredDateTime = dateTimeParser(givenDate + " " + givenTime); //Converting Strings to DateTime values, calling to the Converter/Parser. parsedEnteredDateTime is the Date combined with the Time entered by the User, to get a DateTime Object.
+                                    driverRestictedDay = DaysByDigits[keyNumber]; //Knowing which one is the Driver's Restriction Day.
                                     parsedDateDOW = parsedEnteredDateTime.DayOfWeek.ToString();
-                                    if (parsedEnteredDateTime > rightNow) //Verifying the entered DateTime has not passed yet, otherwise and error is reported.
+                                    if (parsedEnteredDateTime > rightNow) //Verifying that the entered DateTime has not passed yet, otherwise and error is reported.
                                     {
-                                        if (year >= (rightNow.Year + 70)) //Verifying the DateTime is not more than 70 years from the current DateTime, because it wouldn't make so much sense, if it is, the app is still working, but a little joke is launched :).
+                                        if (year >= (rightNow.Year + 70)) //Verifying that the DateTime is not more than 70 years from the current DateTime, because it wouldn't make so much sense, if it is, the app is still working, but a little joke is launched :).
                                         {
                                             OldMan = true;
                                         }
@@ -168,48 +168,48 @@ namespace Pico_y_Placa_Predictor
                                             OldMan = false;
                                         }
 
-                                        if (driverRestictedDay.Equals(parsedDateDOW, StringComparison.OrdinalIgnoreCase)) // Comparing Day Of Week independently of uppercase or lowercase, if true, it is the Restriction Day for the driver, so we continue with the Time Testing, but if not, it means it's not the Driver's Restriction Day and he/she is Authorized to Drive.
+                                        if (driverRestictedDay.Equals(parsedDateDOW, StringComparison.OrdinalIgnoreCase)) // Comparing Day Of Week independently of uppercase or lowercase, if true, it means it is the Restriction Day for the driver, so we continue with the Time Testing, but if not, it means it's not the Driver's Restriction Day and he/she is Authorized to Drive, so the respective verdict is launched.
                                         {
-                                            DateTime morningBeginTime = dateTimeParser(givenDate + " " + MorningScheduleBeginTime); //Structuring morning Restricted DateTime boundaries.
+                                            DateTime morningBeginningTime = dateTimeParser(givenDate + " " + MorningScheduleBeginTime); // Structuring morning Restricted DateTime boundaries.
                                             DateTime morningEndTime = dateTimeParser(givenDate + " " + MorningScheduleEndTime);
-                                            if (parsedEnteredDateTime >= morningBeginTime && parsedEnteredDateTime <= morningEndTime) //Testing if the Entered DateTime is in a morning Restriction Schedule Time, if not, I test with afternoon Schedule boundaries, otherwise the Driver is Authorized to Drive.
+                                            if (parsedEnteredDateTime >= morningBeginningTime && parsedEnteredDateTime <= morningEndTime) // Testing if the Entered DateTime is in a morning Restriction Schedule Time, if not, I test with afternoon Schedule boundaries, otherwise the Driver is Authorized to Drive on that time.
                                             {
                                                 timeUntilRestrictionRemaining = morningEndTime - parsedEnteredDateTime;
-                                                CloseToRestriction[0] = true; //The index 1 is not relevant here.
-                                                closeToRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
+                                                NearRestriction[0] = true; // The index 1 is not relevant here because the index 1 is for knowing if the morning restriction schedule is near, but we are already in it, so since the driver is in the morning restriction schedule we know that the afternoon restriction schedule is coming soon.
+                                                nearRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
                                                 youAreRestricted();
                                             }
                                             else
                                             {
-                                                DateTime afternoonBeginTime = dateTimeParser(givenDate + " " + AfternoonScheduleBeginTime); //Structuring afternoon Restricted DateTime boundaries.
+                                                DateTime afternoonBeginningTime = dateTimeParser(givenDate + " " + AfternoonScheduleBeginTime); // Structuring afternoon Restricted DateTime boundaries.
                                                 DateTime afternoonEndTime = dateTimeParser(givenDate + " " + AfternoonScheduleEndTime);
-                                                if (parsedEnteredDateTime >= afternoonBeginTime && parsedEnteredDateTime <= afternoonEndTime) //Testing with the afternoon Restricted Schedule Time.
+                                                if (parsedEnteredDateTime >= afternoonBeginningTime && parsedEnteredDateTime <= afternoonEndTime) // Testing with the afternoon Restricted Schedule Time.
                                                 {
                                                     timeUntilRestrictionRemaining = afternoonEndTime - parsedEnteredDateTime;
-                                                    CloseToRestriction[0] = false; //The index 1 is not relevant here.
-                                                    closeToRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
+                                                    NearRestriction[0] = false; // The index 1 is not relevant here because the index 1 is for knowing if the morning restriction schedule is near, but we are already in the afternoon restriction schedule, so since the driver is in it, we know there are no more restriction schedules for coming.
+                                                    nearRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
                                                     youAreRestricted();
                                                 }
                                                 else
-                                                {
-                                                    if (parsedEnteredDateTime > morningEndTime) //Now the Driver is Authorized to Drive, but here I'm testing if is there a next Restricted Schedule Time on this day?, if true, I calculate the time until the next Restricted Schedule Beginning.
+                                                {   // Now, reached this point, the Driver is Authorized to Drive because we know they is not in any restriction schedule on the entered Time, but here I'm testing if there is a Restriction Schedule Time for coming on this day, if true, I calculate the time until the next Restriction Schedule Begins.
+                                                    if (parsedEnteredDateTime > morningEndTime) // Is the Entered Time after the morningEndTime?, if it is it means the driver can only be between the first and the second schedule boundaries of after the second sechedule end, so I have to test that.
                                                     {
-                                                        if (parsedEnteredDateTime < afternoonBeginTime)
+                                                        if (parsedEnteredDateTime < afternoonBeginningTime) // Is the Entered Time before the afternoonBeginningTime?, if true, it means the second  schedule is coming, so I have to calculate the time remmainning for it.
                                                         {
-                                                            timeUntilRestrictionRemaining = afternoonBeginTime - parsedEnteredDateTime;
-                                                            CloseToRestriction[0] = true; CloseToRestriction[1] = false; //Index 0-> If True, There is a Restriction close, otherwise there is not and the entered time is greater than 19:30. Index 1-> If the Index 0 is True, this index if True says that Morning Restriction is close, I mean the entered time is before the morning Restriction schedule, otherwise it says that Afternoon Restriction is close (the entered time is after the morning restriction schedule but before the afternoon restriction schedule).
-                                                            closeToRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
+                                                            timeUntilRestrictionRemaining = afternoonBeginningTime - parsedEnteredDateTime;
+                                                            NearRestriction[0] = true; NearRestriction[1] = false; //Index 0-> If True, It indicates that there's a Restriction schedule near, otherwise there is not and the entered time is greater than 19:30. Index 1-> If the Index 0 is True, this index if True, it indicates that Morning Restriction is near, I mean the entered time is before the morning Restriction schedule, otherwise it says that Afternoon Restriction is near (the entered time is after the morning restriction schedule but before the afternoon restriction schedule).
+                                                            nearRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
                                                         }
                                                         else
                                                         {
                                                             youAreAuthorized();
                                                         }
                                                     }
-                                                    else if (parsedEnteredDateTime < morningBeginTime)
+                                                    else if (parsedEnteredDateTime < morningBeginningTime) // Is the Entered Time before the morningBeginningTime?, if true, it means there are two schedules coming on this day, so I have to warn the Driver for it.
                                                     {
-                                                        timeUntilRestrictionRemaining = morningBeginTime - parsedEnteredDateTime;
-                                                        CloseToRestriction[0] = true; CloseToRestriction[1] = true;
-                                                        closeToRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
+                                                        timeUntilRestrictionRemaining = morningBeginningTime - parsedEnteredDateTime;
+                                                        NearRestriction[0] = true; NearRestriction[1] = true;
+                                                        nearRestrictionRemainingTimeSetter(timeUntilRestrictionRemaining);
                                                     }
                                                     youAreAuthorized();
                                                 }
@@ -263,8 +263,8 @@ namespace Pico_y_Placa_Predictor
             return DateTime.Parse(stringDate);
         }
 
-        private void closeToRestrictionRemainingTimeSetter(TimeSpan timeUntilRestrictionRemainingHelper)
-        {//The timeUntilRestrictionRemainingHelper is a TimeSpan variable which contains the Time until the Next Restriction Schedule Beginning or Time Remaining until the Current Restriction End.
+        private void nearRestrictionRemainingTimeSetter(TimeSpan timeUntilRestrictionRemainingHelper)
+        {//The timeUntilRestrictionRemainingHelper is a TimeSpan variable which contains the Time until Next Restriction Schedule Beginning or Time Remaining until Current Restriction End.
          //Loop, to decide the right words to save in rightWordsSetter and this way the message is a more human natural talking and not so mechanich, it has the next Structure:
          //rightWordsSetter[0]-> Word Hours/Hour for the Time until the Next Restriction Schedule Beginning or Time Remaining until the Current Restriction End.
          //rightWordsSetter[0]-> Word Minutes/Minute for the Time until the Next Restriction Schedule Beginning or Time Remaining until the Current Restriction End.
@@ -298,13 +298,13 @@ namespace Pico_y_Placa_Predictor
             //Formatting the right Close To Restriction or Remaining Time:
             if (hours == 0 && minutes >= 1)
             {
-                CloseToRestrictionTimeRemaining = String.Format("{0:%m} {1}", timeUntilRestrictionRemainingHelper, rightWordsSetter[1]);
+                NearRestrictionTimeRemaining = String.Format("{0:%m} {1}", timeUntilRestrictionRemainingHelper, rightWordsSetter[1]);
             } else if (hours >= 1 && minutes == 0)
             {
-                CloseToRestrictionTimeRemaining = String.Format("{0:%h} {1}", timeUntilRestrictionRemainingHelper, rightWordsSetter[0]);
+                NearRestrictionTimeRemaining = String.Format("{0:%h} {1}", timeUntilRestrictionRemainingHelper, rightWordsSetter[0]);
             } else if (hours >= 1 && minutes >= 1)
             {
-                CloseToRestrictionTimeRemaining = String.Format("{0:%h} {1} and {2:%m} {3}", timeUntilRestrictionRemainingHelper, rightWordsSetter[0], timeUntilRestrictionRemainingHelper, rightWordsSetter[1]);
+                NearRestrictionTimeRemaining = String.Format("{0:%h} {1} and {2:%m} {3}", timeUntilRestrictionRemainingHelper, rightWordsSetter[0], timeUntilRestrictionRemainingHelper, rightWordsSetter[1]);
             }
         }
         #endregion
@@ -354,15 +354,15 @@ namespace Pico_y_Placa_Predictor
             }
             else
             {
-                if (CloseToRestriction[0])
+                if (NearRestriction[0])
                 {
-                    if (CloseToRestriction[1])
+                    if (NearRestriction[1])
                     {
-                        labelCommentaries.Text = "But you are close to a Restriction Schedule, You have " + CloseToRestrictionTimeRemaining + " for your next Restricted Schedule, duration of restriction on Morning is 2 Hours and 30 Minutes, from 7:00 to 9:30, so it runs out faster, but have on mind that you have a Second Restriction on this Day that lasts 3 Hours and 30 Minutes, from 16:00 to 19:30, so be alert and don't be around the streets when Restriction Time arrives. Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
+                        labelCommentaries.Text = "But you are near a Restriction Schedule, You have " + NearRestrictionTimeRemaining + " for your next Restricted Schedule, duration of restriction on Morning is 2 Hours and 30 Minutes, from 7:00 to 9:30, so it runs out faster, but have on mind that you have a Second Restriction on this Day that lasts 3 Hours and 30 Minutes, from 16:00 to 19:30, so be alert and don't be around the streets when Restriction Time arrives. Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
                     }
                     else
                     {
-                        labelCommentaries.Text = "But you are close to a Restriction Schedule, You have " + CloseToRestrictionTimeRemaining + " for your next Restricted Schedule, duration of restriction on Afternoon is 3 Hours and 30 Minutes, from 16:00 to 19:30, it's not so bad, time runs out faster than you think, just be alert and don't be around the streets when Restriction Time arrives. Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
+                        labelCommentaries.Text = "But you are near a Restriction Schedule, You have " + NearRestrictionTimeRemaining + " for your next Restricted Schedule, duration of restriction on Afternoon is 3 Hours and 30 Minutes, from 16:00 to 19:30, it's not so bad, time runs out faster than you think, just be alert and don't be around the streets when Restriction Time arrives. Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
                     }
                 }
                 else
@@ -376,7 +376,7 @@ namespace Pico_y_Placa_Predictor
         private void youAreRestricted()
         {
             labelVerdict.Visible = true;
-            labelVerdict.Text = "You are NOT Authorized to Drive on that Time";
+            labelVerdict.Text = "You are NOT Authorized to Drive on that Date-Time";
             labelVerdict.ForeColor = redError;
             if (OldMan)
             {
@@ -384,13 +384,13 @@ namespace Pico_y_Placa_Predictor
             }
             else
             {
-                if (CloseToRestriction[0])
+                if (NearRestriction[0])
                 {
-                    labelCommentaries.Text = "Just wait for a while, Your Remaining Restriction Time is " + CloseToRestrictionTimeRemaining + ", until 9:30... but Time runs out faster on Morning... Remember to Be patient and careful with the penalty fees, one is never too cautious... Have on mind that you have a Second Restriction on this Day that lasts 3 Hours and 30 Minutes, from 16:00 to 19:30, so be alert and don't be around the streets when Restriction Time arrives. When your Restricted Time ends, if you plan to drive... Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
+                    labelCommentaries.Text = "Just wait for a while, Your Remaining Restriction Time is " + NearRestrictionTimeRemaining + ", until 9:30... but Time runs out faster on Morning... Remember to Be patient and careful with the penalty fees, one is never too cautious... Have on mind that you have a Second Restriction on this Day that lasts 3 Hours and 30 Minutes, from 16:00 to 19:30, so be alert and don't be around the streets when Restriction Time arrives. When your Restricted Time ends, if you plan to drive... Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
                 }
                 else
                 {
-                    labelCommentaries.Text = "Just wait for a while, Your Remaining Restriction Time is " + CloseToRestrictionTimeRemaining + ", until 19:30... but Time runs out fast these days... Remember to Be patient and careful with the penalty fees, one is never too cautious... When your Restricted Time ends, if you plan to drive... Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
+                    labelCommentaries.Text = "Just wait for a while, Your Remaining Restriction Time is " + NearRestrictionTimeRemaining + ", until 19:30... but Time runs out fast these days... Remember to Be patient and careful with the penalty fees, one is never too cautious... When your Restricted Time ends, if you plan to drive... Beware of traffic signs, drunk people and other factors when driving. Have a great day! and a secure trip : )";
                 }
             }
         }
