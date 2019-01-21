@@ -14,5 +14,4 @@ If you want to contribute and make improvements in this project you can do so, a
 # Thanks for using...
 Thank you for using this Software, comments and feedback are always welcome. :)
 
-Have a great life... Happy Coding!, and Best Regards... Clark.
-
+Have a great life... Happy Coding!, Regards and Best Wishes... Clark.
